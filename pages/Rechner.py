@@ -7,7 +7,7 @@ def calculate_bmi(height, weight, timezone='Europe/Zurich'):
     Berechnet den BMI und gibt eine strukturierte Antwort zurück.
 
     Args:
-        height (float): Körpergröße in Metern.
+        height (float): Körpergrösse in Metern.
         weight (float): Gewicht in Kilogramm.
         timezone (str): Zeitzone für die Zeitstempelanzeige.
 
@@ -15,7 +15,7 @@ def calculate_bmi(height, weight, timezone='Europe/Zurich'):
         dict: Ein Dictionary mit Eingaben, berechnetem BMI, Kategorie und Zeitstempel.
     """
     if height <= 0 or weight <= 0:
-        st.error("Größe und Gewicht müssen positive Werte sein.")
+        st.error("Grösse und Gewicht müssen positive Werte sein.")
         return None
 
     bmi = weight / (height ** 2)
@@ -51,7 +51,7 @@ def calculate_bmi(height, weight, timezone='Europe/Zurich'):
 st.title("💪 BMI Rechner")
 
 
-height = st.slider("Größe auswählen (m)", min_value=0.5, max_value=2.5, value=1.70, step=0.01)
+height = st.slider("Grösse auswählen (m)", min_value=0.5, max_value=2.5, value=1.70, step=0.01)
 weight = st.slider("Gewicht auswählen (kg)", min_value=30.0, max_value=200.0, value=70.0, step=0.5)
 
 
@@ -60,7 +60,7 @@ result = calculate_bmi(height, weight)
 if result:
     st.markdown(f"""
     ### 📝 Ergebnisse:
-    - **Größe:** {result['height']} m  
+    - **Grösse:** {result['height']} m  
     - **Gewicht:** {result['weight']} kg  
     - **BMI:** <span style='color:{result["color"]}; font-weight:bold;'>{result['bmi']}</span>  
     - **Kategorie:** {result['category']}  
