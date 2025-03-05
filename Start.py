@@ -15,3 +15,13 @@ Diese App wurde von folgenden Personen entwickelt:
 Diese App ist das leere Gerüst für die App-Entwicklung im Modul Informatik 2 (BMLD/ZHAW)
 
 Autorinnen: Aylin Ago (agoayl01@students.zhaw.ch) und Genta Arifi (arifigen@students.zhaw.ch)""")
+
+
+import streamlit as st
+
+st.title("🏠 Willkommen zur BMI-App!")
+
+st.write("Klicken Sie auf den Button unten, um zum BMI-Rechner zu gelangen.")
+
+# Button zum Wechseln auf die andere Seite
+st.page_link("pages/Rechner.py", label="➡️ Zum BMI-Rechner", icon="📊")
