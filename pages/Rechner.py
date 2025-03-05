@@ -1,6 +1,6 @@
 import streamlit as st
 import datetime
-import pytz  # Falls Zeitzone benötigt wird
+import pytz  
 
 def calculate_bmi(height, weight, timezone='Europe/Zurich'):
     """
@@ -20,7 +20,7 @@ def calculate_bmi(height, weight, timezone='Europe/Zurich'):
 
     bmi = weight / (height ** 2)
 
-    # Bestimme die BMI-Kategorie
+    
     if bmi < 18.5:
         category = "🟦 Untergewicht"
         color = "blue"
@@ -34,7 +34,7 @@ def calculate_bmi(height, weight, timezone='Europe/Zurich'):
         category = "🟥 Adipositas"
         color = "red"
 
-    # Zeitstempel mit richtiger Zeitzone
+    
     tz = pytz.timezone(timezone)
     now = datetime.datetime.now(tz).strftime('%d.%m.%Y %H:%M:%S')
 
@@ -47,14 +47,14 @@ def calculate_bmi(height, weight, timezone='Europe/Zurich'):
         "color": color
     }
 
-# 🌟 Streamlit UI
+
 st.title("💪 BMI Rechner")
 
-# Eingaben von Nutzer
+
 height = st.slider("Größe auswählen (m)", min_value=0.5, max_value=2.5, value=1.70, step=0.01)
 weight = st.slider("Gewicht auswählen (kg)", min_value=30.0, max_value=200.0, value=70.0, step=0.5)
 
-# BMI Berechnung ausführen
+
 result = calculate_bmi(height, weight)
 
 if result:
@@ -67,7 +67,7 @@ if result:
     - 🕒 **Berechnet am:** {result['timestamp']}
     """, unsafe_allow_html=True)
 
-    # Optionale BMI-Interpretation
+    
     st.info("💡 Ein gesunder BMI liegt zwischen 18.5 und 24.9.")
 
 
