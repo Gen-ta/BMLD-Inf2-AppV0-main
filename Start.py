@@ -7,7 +7,6 @@ st.title("Meine erste Streamlit App")
 
 # Streamlit über den Text unten direkt in die App - cool!
 ("""
-SyntaxError: unterminated triple-quoted string literal (detected at line 16)
 Diese App wurde von folgenden Personen entwickelt:
 - Aylin Ago (agoayl01@students.zhaw.ch)
 - Genta Arifi (arifigen@students.zhaw.ch)
