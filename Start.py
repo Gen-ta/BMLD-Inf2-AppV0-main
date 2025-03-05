@@ -19,9 +19,9 @@ Autorinnen: Aylin Ago (agoayl01@students.zhaw.ch) und Genta Arifi (arifigen@stud
 
 import streamlit as st
 
-st.title("🏠 Willkommen zur BMI-App!")
+st.title("🏠 Willkommen zur genayl App!")
 
 st.write("Klicken Sie auf den Button unten, um zum BMI-Rechner zu gelangen.")
 
-# Button zum Wechseln auf die andere Seite
+
 st.page_link("pages/Rechner.py", label="➡️ Zum BMI-Rechner", icon="📊")
