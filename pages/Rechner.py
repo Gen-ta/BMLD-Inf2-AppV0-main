@@ -1,3 +1,5 @@
+streamlit run Rechner.py
+
 import streamlit as st
 import matplotlib.pyplot as plt
 import datetime
