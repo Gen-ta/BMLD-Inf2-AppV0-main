@@ -1,63 +1,75 @@
-streamlit run Rechner.py
-
 import streamlit as st
-import matplotlib.pyplot as plt
 import datetime
-import numpy as np
+import pytz  # Falls Zeitzone benötigt wird
 
-# Funktion zur Berechnung des BMI
-def calculate_bmi(weight, height):
-    return weight / (height ** 2)
+def calculate_bmi(height, weight, timezone='Europe/Zurich'):
+    """
+    Berechnet den BMI und gibt eine strukturierte Antwort zurück.
 
-# Streamlit App-Titel
-st.title("BMI Rechner")
+    Args:
+        height (float): Körpergröße in Metern.
+        weight (float): Gewicht in Kilogramm.
+        timezone (str): Zeitzone für die Zeitstempelanzeige.
 
-# Nutzer-Eingaben für Größe und Gewicht
-height = st.slider("Wählen Sie Ihre Größe (m)", min_value=0.5, max_value=2.5, value=1.70, step=0.01)
-weight = st.slider("Wählen Sie Ihr Gewicht (kg)", min_value=30.0, max_value=200.0, value=70.0, step=0.5)
+    Returns:
+        dict: Ein Dictionary mit Eingaben, berechnetem BMI, Kategorie und Zeitstempel.
+    """
+    if height <= 0 or weight <= 0:
+        st.error("Größe und Gewicht müssen positive Werte sein.")
+        return None
 
-# BMI berechnen
-bmi = calculate_bmi(weight, height)
+    bmi = weight / (height ** 2)
 
-# BMI-Kategorien bestimmen
-if bmi < 18.5:
-    category = "Untergewicht"
-elif 18.5 <= bmi < 24.9:
-    category = "Normalgewicht"
-elif 25 <= bmi < 29.9:
-    category = "Übergewicht"
-else:
-    category = "Adipositas"
+    # Bestimme die BMI-Kategorie
+    if bmi < 18.5:
+        category = "🟦 Untergewicht"
+        color = "blue"
+    elif bmi < 25:
+        category = "🟩 Normalgewicht"
+        color = "green"
+    elif bmi < 30:
+        category = "🟧 Übergewicht"
+        color = "orange"
+    else:
+        category = "🟥 Adipositas"
+        color = "red"
 
-# Ergebnisse anzeigen
-st.write(f"Ihr BMI ist: **{bmi:.1f}**")
-st.write(f"Berechnet am: {datetime.datetime.now().strftime('%d.%m.%Y %H:%M:%S')}")
-st.write(f"Kategorie: **{category}**")
+    # Zeitstempel mit richtiger Zeitzone
+    tz = pytz.timezone(timezone)
+    now = datetime.datetime.now(tz).strftime('%d.%m.%Y %H:%M:%S')
 
-# Diagramm erstellen
-fig, ax = plt.subplots(figsize=(6, 3))  # Größe optimiert für Streamlit
+    return {
+        "timestamp": now,
+        "height": height,
+        "weight": weight,
+        "bmi": round(bmi, 1),
+        "category": category,
+        "color": color
+    }
 
-# BMI-Kategorien für Balkendiagramm
-categories = ["Untergewicht", "Normalgewicht", "Übergewicht", "Adipositas"]
-values = [18.5, 24.9, 29.9, 40]  # Maximalwerte jeder Kategorie
-colors = ['blue', 'green', 'orange', 'red']
+# 🌟 Streamlit UI
+st.title("💪 BMI Rechner")
 
-# Horizontale Balken zeichnen
-y_pos = np.arange(len(categories))
-ax.barh(y_pos, values, color=colors, height=0.5, alpha=0.6)
+# Eingaben von Nutzer
+height = st.slider("Größe auswählen (m)", min_value=0.5, max_value=2.5, value=1.70, step=0.01)
+weight = st.slider("Gewicht auswählen (kg)", min_value=30.0, max_value=200.0, value=70.0, step=0.5)
 
-# Aktuellen BMI als vertikale Linie markieren
-ax.axvline(x=bmi, color='black', linestyle='--', label=f'Ihr BMI: {bmi:.1f}')
+# BMI Berechnung ausführen
+result = calculate_bmi(height, weight)
 
-# Labels setzen
-ax.set_yticks(y_pos)
-ax.set_yticklabels(categories)
-ax.set_xlabel("BMI-Wert")
-ax.set_title("BMI-Kategorien")
-ax.legend()
-plt.tight_layout()
+if result:
+    st.markdown(f"""
+    ### 📝 Ergebnisse:
+    - **Größe:** {result['height']} m  
+    - **Gewicht:** {result['weight']} kg  
+    - **BMI:** <span style='color:{result["color"]}; font-weight:bold;'>{result['bmi']}</span>  
+    - **Kategorie:** {result['category']}  
+    - 🕒 **Berechnet am:** {result['timestamp']}
+    """, unsafe_allow_html=True)
 
-# Diagramm in Streamlit anzeigen
-st.pyplot(fig)
+    # Optionale BMI-Interpretation
+    st.info("💡 Ein gesunder BMI liegt zwischen 18.5 und 24.9.")
+
+
 
 
