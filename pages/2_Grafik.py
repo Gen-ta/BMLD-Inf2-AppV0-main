@@ -5,6 +5,8 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 from utils.login_manager import LoginManager
+from utils.data_manager import DataManager
+
 LoginManager().go_to_login('Start.py') 
 
 def calculate_bmi(height, weight, timezone='Europe/Zurich'):
@@ -47,7 +49,6 @@ weight = st.slider("Gewicht auswählen (kg)", min_value=30.0, max_value=200.0, v
 result = calculate_bmi(height, weight)
 
 if result:
-    from utils.data_manager import DataManager
     data_manager = DataManager()
     data_manager.append_record(session_state_key='data_df', record_dict=result)
 
@@ -65,7 +66,7 @@ if result:
     # --- Load saved data ---
     data_df = data_manager.get_records(session_state_key='data_df')
 
-    if not data_df.empty:
+    if data_df is not None and not data_df.empty:
         data_df['timestamp'] = pd.to_datetime(data_df['timestamp'], format='%d.%m.%Y %H:%M:%S')
         data_df = data_df.sort_values(by='timestamp')
         
