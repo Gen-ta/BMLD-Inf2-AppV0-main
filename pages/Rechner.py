@@ -61,6 +61,10 @@ weight = st.slider("Gewicht auswählen (kg)", min_value=30.0, max_value=200.0, v
 result = calculate_bmi(height, weight)
 
 if result:
+    # --- Save BMI data ---
+    from utils.data_manager import DataManager
+    DataManager().append_record(session_state_key='data_df', record_dict=result)
+    
     st.markdown(f"""
     ### 📝 Ergebnisse:
     - **Grösse:** {result['height']} m  
@@ -68,7 +72,7 @@ if result:
     - **BMI:** <span style='color:{result["color"]}; font-weight:bold;'>{result['bmi']}</span>  
     - **Kategorie:** {result['category']}  
     - 🕒 **Berechnet am:** {result['timestamp']}
-    """, unsafe_allow_html=True)
+    """, unsafe_allow_html=True)    
 
     
     st.info("💡 Ein gesunder BMI liegt zwischen 18.5 und 24.9.")
