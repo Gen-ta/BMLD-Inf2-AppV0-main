@@ -66,8 +66,13 @@ if result:
     # --- Load saved data ---
     data_df = data_manager.get_records(session_state_key='data_df')
 
-    if data_df is not None and not data_df.empty:
-        data_df['timestamp'] = pd.to_datetime(data_df['timestamp'], format='%d.%m.%Y %H:%M:%S')
+    if data_df is None or not isinstance(data_df, pd.DataFrame):
+        st.warning("Keine gespeicherten Daten gefunden oder ungültiges Datenformat.")
+        data_df = pd.DataFrame(columns=['timestamp', 'bmi'])
+    
+    if not data_df.empty:
+        data_df['timestamp'] = pd.to_datetime(data_df['timestamp'], format='%d.%m.%Y %H:%M:%S', errors='coerce')
+        data_df = data_df.dropna(subset=['timestamp'])  # Entfernt ungültige Zeitstempel
         data_df = data_df.sort_values(by='timestamp')
         
         # --- Plotting the BMI history ---
