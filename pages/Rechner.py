@@ -2,6 +2,9 @@ import streamlit as st
 import datetime
 import pytz  
 
+from utils.login_manager import LoginManager
+LoginManager().go_to_login('Start.py') 
+
 def calculate_bmi(height, weight, timezone='Europe/Zurich'):
     """
     Berechnet den BMI und gibt eine strukturierte Antwort zurück.
