@@ -74,9 +74,9 @@ if result:
 
     st.info("💡 Ein gesunder BMI liegt zwischen 18.5 und 24.9.")
     
-    if st.button("Daten speichern und zur Datenseite gehen"):
+    if st.button("Daten speichern"):
         st.session_state['current_bmi_data'] = result
-        st.experimental_set_query_params(page="2_Daten")
+        st.success("Daten erfolgreich gespeichert!")
 
 # Button to navigate to the data page
 st.page_link("pages/2_Daten.py", label="➡️ Zur Datenseite", icon="📊")
