@@ -40,4 +40,4 @@ st.title("🏠 Willkommen zur genayl App!")
 st.write("Klicken Sie auf den Button unten, um zum BMI-Rechner zu gelangen.")
 
 
-st.page_link("pages/Rechner.py", label="➡️ Zum BMI-Rechner", icon="📊")
+st.page_link("pages/1_Rechner.py", label="➡️ Zum BMI-Rechner", icon="📊")
