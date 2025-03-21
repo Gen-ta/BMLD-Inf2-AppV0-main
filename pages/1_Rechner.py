@@ -53,10 +53,8 @@ def calculate_bmi(height, weight, timezone='Europe/Zurich'):
 
 st.title("💪 BMI Rechner")
 
-
 height = st.slider("Grösse auswählen (m)", min_value=0.5, max_value=2.5, value=1.70, step=0.01)
 weight = st.slider("Gewicht auswählen (kg)", min_value=30.0, max_value=200.0, value=70.0, step=0.5)
-
 
 result = calculate_bmi(height, weight)
 
@@ -74,7 +72,6 @@ if result:
     - 🕒 **Berechnet am:** {result['timestamp']}
     """, unsafe_allow_html=True)    
 
-    
     st.info("💡 Ein gesunder BMI liegt zwischen 18.5 und 24.9.")
     
     if st.button("Daten speichern und zur Datenseite gehen"):
