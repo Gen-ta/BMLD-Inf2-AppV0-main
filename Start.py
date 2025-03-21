@@ -42,7 +42,5 @@ st.page_link("pages/1_Rechner.py", label="➡️ Zum BMI-Rechner", icon="📊")
 # Display saved BMI data
 st.title("📊 Gespeicherte BMI-Daten")
 
-if 'data_df' in st.session_state and not st.session_state['data_df'].empty:
-    st.dataframe(st.session_state['data_df'])
-else:
-    st.write("Noch keine Daten vorhanden.")
+
+

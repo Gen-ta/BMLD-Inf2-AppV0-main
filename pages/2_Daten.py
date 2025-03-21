@@ -7,20 +7,29 @@ import streamlit as st
 import pandas as pd
 from utils.data_manager import DataManager
 
-st.title('📊 BMI Werte')
+# initialize the data manager
+data_manager = DataManager(fs_protocol='webdav', fs_root_folder="BMLD_App_DB")  # switch drive 
 
-# --- Load saved data ---
-data_manager = DataManager()
-data_df = data_manager.get_records(session_state_key='data_df')
+# load the data from the persistent storage into the session state
+data_manager.load_user_data(
+    session_state_key='data_df', 
+    file_name='data.csv', 
+    initial_value = pd.DataFrame(), 
+    parse_dates = ['timestamp']
+)
 
-if data_df is None or not isinstance(data_df, pd.DataFrame) or data_df.empty:
-    st.info('Keine BMI Daten vorhanden. Berechnen Sie Ihren BMI auf der Startseite.')
-    st.stop()
+st.title("📊 Gespeicherte BMI-Daten")
 
-# Sort dataframe by timestamp
-data_df['timestamp'] = pd.to_datetime(data_df['timestamp'], format='%d.%m.%Y %H:%M:%S', errors='coerce')
-data_df = data_df.dropna(subset=['timestamp'])
-data_df = data_df.sort_values('timestamp', ascending=False)
+# Display saved BMI data
+if 'data_df' in st.session_state and not st.session_state['data_df'].empty:
+    st.dataframe(st.session_state['data_df'])
+else:
+    st.write("Noch keine Daten vorhanden.")
 
-# Display table
-st.dataframe(data_df)
+# Button to save current BMI data
+if st.button("Aktuelle BMI-Daten speichern"):
+    if 'current_bmi_data' in st.session_state:
+        data_manager.append_record(session_state_key='data_df', record_dict=st.session_state['current_bmi_data'])
+        st.success("Daten erfolgreich gespeichert!")
+    else:
+        st.error("Keine aktuellen BMI-Daten vorhanden.")
