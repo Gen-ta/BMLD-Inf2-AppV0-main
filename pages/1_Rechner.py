@@ -78,6 +78,9 @@ if result:
         st.session_state['current_bmi_data'] = result
         st.experimental_set_query_params(page="2_Daten")
 
+# Button to navigate to the data page
+st.page_link("pages/2_Daten.py", label="➡️ Zur Datenseite", icon="📊")
+
 
 
 
