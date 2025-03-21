@@ -30,9 +30,12 @@ if 'data_df' in st.session_state and not st.session_state['data_df'].empty:
         range=['blue', 'green', 'orange', 'red']
     )
     
+    y_min = df['bmi'].min() - 5
+    y_max = df['bmi'].max() + 5
+    
     chart = alt.Chart(df).mark_point().encode(
         x=alt.X('timestamp:T', title='Zeitstempel'),
-        y=alt.Y('bmi:Q', title='BMI-Wert'),
+        y=alt.Y('bmi:Q', title='BMI-Wert', scale=alt.Scale(domain=[y_min, y_max])),
         color=alt.Color('category:N', title='Kategorie', scale=color_scale),
         tooltip=['timestamp', 'height', 'weight', 'bmi', 'category']
     ).properties(
