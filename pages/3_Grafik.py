@@ -30,7 +30,7 @@ if 'data_df' in st.session_state and not st.session_state['data_df'].empty:
         range=['blue', 'green', 'orange', 'red']
     )
     
-    chart = alt.Chart(df).mark_line(point=alt.OverlayMarkDef(color='black')).encode(
+    chart = alt.Chart(df).mark_point().encode(
         x=alt.X('timestamp:T', title='Zeitstempel'),
         y=alt.Y('bmi:Q', title='BMI-Wert'),
         color=alt.Color('category:N', title='Kategorie', scale=color_scale),
