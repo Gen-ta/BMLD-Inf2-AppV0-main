@@ -21,30 +21,22 @@ data_manager.load_user_data(
 
 st.title("📈 BMI-Daten Grafik")
 
-# Display BMI data graph
-if 'data_df' in st.session_state and not st.session_state['data_df'].empty:
-    df = st.session_state['data_df']
-    
-    color_scale = alt.Scale(
-        domain=['🟦 Untergewicht', '🟩 Normalgewicht', '🟧 Übergewicht', '🟥 Adipositas'],
-        range=['blue', 'green', 'orange', 'red']
-    )
-    
-    y_min = df['bmi'].min() - 5
-    y_max = 80  # Set y-axis maximum to 80
-    
-    chart = alt.Chart(df).mark_point().encode(
-        x=alt.X('timestamp:T', title='Zeitstempel'),
-        y=alt.Y('bmi:Q', title='BMI-Wert', scale=alt.Scale(domain=[y_min, y_max])),
-        color=alt.Color('category:N', title='Kategorie', scale=color_scale),
-        tooltip=['timestamp', 'height', 'weight', 'bmi', 'category']
-    ).properties(
-        title='Verlauf der BMI-Daten'
-    )
-    
-    st.altair_chart(chart, use_container_width=True)
-else:
-    st.write("Noch keine Daten vorhanden.")
+data_df = st.session_state['data_df']
+if data_df.empty:
+    st.info('Keine BMI Daten vorhanden. Berechnen Sie Ihren BMI auf der Startseite.')
+    st.stop()
+
+# Weight over time
+st.line_chart(data=data_df.set_index('timestamp')['weight'], use_container_width=True)
+st.caption('Gewicht über Zeit (kg)')
+
+# Height over time 
+st.line_chart(data=data_df.set_index('timestamp')['height'], use_container_width=True)
+st.caption('Grösse über Zeit (m)')
+
+# BMI over time
+st.line_chart(data=data_df.set_index('timestamp')['bmi'], use_container_width=True)
+st.caption('BMI über Zeit')
 
 # Button to navigate to the tips and tricks page
 st.page_link("pages/4_Tipps&Tricks.py", label="➡️ Zu Tipps & Tricks", icon="💡")
