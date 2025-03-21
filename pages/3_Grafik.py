@@ -44,7 +44,7 @@ if 'data_df' in st.session_state and not st.session_state['data_df'].empty:
         color=alt.Color('category:N', title='Kategorie'),
         tooltip=['timestamp', 'height', 'weight', 'bmi', 'category']
     ).properties(
-        title='Grösse vs. Gewicht'
+        title='Grösse vs. Gewicht mit BMI-Kategorien'
     )
     
     line = alt.Chart(normal_bmi_df).mark_line(color='green').encode(
