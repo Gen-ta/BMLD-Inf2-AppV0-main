@@ -32,12 +32,17 @@ Diese App ist das leere Gerüst für die App-Entwicklung im Modul Informatik 2 (
 
 Autorinnen: Aylin Ago (agoayl01@students.zhaw.ch) und Genta Arifi (arifigen@students.zhaw.ch)""")
 
-
-import streamlit as st
-
 st.title("🏠 Willkommen zur genayl App!")
 
 st.write("Klicken Sie auf den Button unten, um zum BMI-Rechner zu gelangen.")
 
-
+# Button to navigate to BMI calculator
 st.page_link("pages/1_Rechner.py", label="➡️ Zum BMI-Rechner", icon="📊")
+
+# Display saved BMI data
+st.title("📊 Gespeicherte BMI-Daten")
+
+if 'data_df' in st.session_state and not st.session_state['data_df'].empty:
+    st.dataframe(st.session_state['data_df'])
+else:
+    st.write("Noch keine Daten vorhanden.")
