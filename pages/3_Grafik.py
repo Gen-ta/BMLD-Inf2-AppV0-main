@@ -45,3 +45,6 @@ if 'data_df' in st.session_state and not st.session_state['data_df'].empty:
     st.altair_chart(chart, use_container_width=True)
 else:
     st.write("Noch keine Daten vorhanden.")
+
+# Button to navigate to the tips and tricks page
+st.page_link("pages/4_Tipps&Tricks.py", label="➡️ Zu Tipps & Tricks", icon="💡")
