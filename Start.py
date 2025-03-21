@@ -18,7 +18,7 @@ data_manager.load_user_data(
     parse_dates = ['timestamp']
     )
 
-st.title("Meine erste Streamlit App")
+st.title("Unsere erste Streamlit App")
 
 # !! WICHTIG: Eure Emails müssen in der App erscheinen!!
 
