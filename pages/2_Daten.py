@@ -35,5 +35,4 @@ if st.button("Aktuelle BMI-Daten speichern"):
         st.error("Keine aktuellen BMI-Daten vorhanden.")
 
 # Button to navigate to the graphics page
-if st.button("Zur Grafikseite gehen"):
-    st.experimental_set_query_params(page="3_Grafik")
+st.page_link("pages/3_Grafik.py", label="➡️ Zur Grafikseite", icon="📈")
