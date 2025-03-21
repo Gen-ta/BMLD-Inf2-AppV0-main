@@ -33,3 +33,7 @@ if st.button("Aktuelle BMI-Daten speichern"):
         st.success("Daten erfolgreich gespeichert!")
     else:
         st.error("Keine aktuellen BMI-Daten vorhanden.")
+
+# Button to navigate to the graphics page
+if st.button("Zur Grafikseite gehen"):
+    st.experimental_set_query_params(page="3_Grafik")
