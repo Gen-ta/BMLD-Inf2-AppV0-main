@@ -121,7 +121,10 @@ class LoginManager:
             The password must be 8-20 characters long and include at least one uppercase letter, 
             one lowercase letter, one digit, and one special character from @$!%*?&.
             """)
-            res = self.authenticator.register_user()
+            try:
+                res = self.authenticator.register_user()
+            except RegisterError as e:
+                st.error(f"Registrierungsfehler: {e}")
             if res[1] is not None:
                 st.success(f"User {res[1]} registered successfully")
                 try:

@@ -2,13 +2,18 @@ import streamlit as st
 import pandas as pd
 from utils.data_manager import DataManager
 from utils.login_manager import LoginManager
+from streamlit_authenticator.utilities.exceptions import RegisterError
 
 # initialize the data manager
 data_manager = DataManager(fs_protocol='webdav', fs_root_folder="BMLD_App_DB")  # switch drive 
 
 # initialize the login manager
 login_manager = LoginManager(data_manager)
-login_manager.login_register()  # open login/register page
+
+try:
+    login_manager.login_register()  # open login/register page
+except RegisterError as e:
+    st.error(f"Registrierungsfehler: {e}")
 
 # load the data from the persistent storage into the session state
 data_manager.load_user_data(
@@ -16,7 +21,7 @@ data_manager.load_user_data(
     file_name='data.csv', 
     initial_value = pd.DataFrame(), 
     parse_dates = ['timestamp']
-    )
+)
 
 st.title("Unsere erste Streamlit App")
 
