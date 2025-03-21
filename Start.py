@@ -39,8 +39,6 @@ st.write("Klicken Sie auf den Button unten, um zum BMI-Rechner zu gelangen.")
 # Button to navigate to BMI calculator
 st.page_link("pages/1_Rechner.py", label="➡️ Zum BMI-Rechner", icon="📊")
 
-# Display saved BMI data
-st.title("📊 Gespeicherte BMI-Daten")
 
 
 
