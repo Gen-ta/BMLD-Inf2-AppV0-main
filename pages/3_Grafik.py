@@ -31,7 +31,7 @@ if 'data_df' in st.session_state and not st.session_state['data_df'].empty:
     )
     
     y_min = df['bmi'].min() - 5
-    y_max = df['bmi'].max() + 5
+    y_max = 80  # Set y-axis maximum to 80
     
     chart = alt.Chart(df).mark_point().encode(
         x=alt.X('timestamp:T', title='Zeitstempel'),
