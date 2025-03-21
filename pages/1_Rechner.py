@@ -79,11 +79,10 @@ if result:
     
     if st.button("Daten speichern und zur Datenseite gehen"):
         st.session_state['current_bmi_data'] = result
-        st.experimental_rerun()
-        st.page_link("pages/2_Daten.py", label="➡️ Zur Datenseite", icon="📊")
+        st.experimental_set_query_params(page="2_Daten")
     
     if st.button("Zur Grafikseite gehen"):
-        st.page_link("pages/3_Grafik.py", label="➡️ Zur Grafikseite", icon="📈")
+        st.experimental_set_query_params(page="3_Grafik")
 
 
 
