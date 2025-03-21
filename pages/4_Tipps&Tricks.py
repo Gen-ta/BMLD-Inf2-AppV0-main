@@ -9,21 +9,21 @@ st.markdown("""
 - **Zucker reduzieren:** Reduziere den Konsum von zuckerhaltigen Getränken und Snacks.
 
 ### Bewegung
-- **Regelmäßige Bewegung:** Bewege dich mindestens 30 Minuten am Tag. Das kann Spazierengehen, Joggen, Radfahren oder ein Workout sein.
+- **Regelmässige Bewegung:** Bewege dich mindestens 30 Minuten am Tag. Das kann Spazierengehen, Joggen, Radfahren oder ein Workout sein.
 - **Krafttraining:** Integriere Krafttraining in deine Routine, um Muskeln aufzubauen und zu erhalten.
-- **Stretching:** Dehne dich regelmäßig, um die Flexibilität zu verbessern und Verletzungen vorzubeugen.
+- **Stretching:** Dehne dich regelmässig, um die Flexibilität zu verbessern und Verletzungen vorzubeugen.
 
 ### Schlaf
 - **Ausreichend Schlaf:** Achte darauf, jede Nacht 7-9 Stunden zu schlafen.
-- **Schlafroutine:** Halte eine regelmäßige Schlafroutine ein, indem du jeden Tag zur gleichen Zeit ins Bett gehst und aufstehst.
+- **Schlafroutine:** Halte eine regelmässige Schlafroutine ein, indem du jeden Tag zur gleichen Zeit ins Bett gehst und aufstehst.
 
 ### Stressmanagement
 - **Entspannungstechniken:** Praktiziere Entspannungstechniken wie Meditation, Yoga oder Atemübungen.
-- **Pausen einlegen:** Mache regelmäßig Pausen während des Tages, um dich zu erholen und Stress abzubauen.
+- **Pausen einlegen:** Mache regelmässig Pausen während des Tages, um dich zu erholen und Stress abzubauen.
 
 ### Allgemeine Gesundheit
-- **Regelmäßige Check-ups:** Gehe regelmäßig zu Vorsorgeuntersuchungen und Arztbesuchen.
-- **Hygiene:** Achte auf gute Hygiene, indem du regelmäßig Hände wäschst und auf Sauberkeit achtest.
+- **Regelmässige Check-ups:** Gehe regelmässig zu Vorsorgeuntersuchungen und Arztbesuchen.
+- **Hygiene:** Achte auf gute Hygiene, indem du regelmässig Hände wäschst und auf Sauberkeit achtest.
 - **Rauchen und Alkohol:** Vermeide Rauchen und reduziere den Alkoholkonsum.
 
 Diese Tipps und Tricks können dir helfen, einen gesunden Lebensstil zu führen und dein Wohlbefinden zu verbessern.
